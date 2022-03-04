@@ -10,6 +10,7 @@ nvxrandr()
 
 state=$(system76-power graphics)
 disport=$(xrandr --listactivemonitors | grep -o -P " DP-0")
+pulseaudio=$(pidof pulseaudio)
 
 
 case "$state" in
@@ -34,5 +35,7 @@ case "$brightinit" in
 	9) xrandr --output $oledinit --brightness .9 ;;
 	10) xrandr --output $oledinit --brightness 1 ;;
 esac
+
+kill $pulseaudio && pulseaudio --start
 
 dunst & mullvad-vpn & feh --bg-fill /home/exaset/.dwm/wallpaper.jpg & bluetoothctl power off

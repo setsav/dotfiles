@@ -1,5 +1,31 @@
 #!/bin/sh
 
+mutevol()
+{
+	/usr/bin/pactl set-sink-mute 0 toggle && volumenotify
+}
+
+downvol()
+{
+	/usr/bin/pactl set-sink-volume 0 -5% && volumenotify
+}
+
+upvol()
+{
+	/usr/bin/pactl set-sink-volume 0 +5% && volumenotify
+}
+
+volumenotify()
+{
+	volume=$(pactl list sinks | perl -000ne 'if(/Sink #0/){/\/  *(\d\d*)/; print "$1\n"}')
+
+	if [[ "$volume" -lt 101 ]] ; then
+		dunstify -r 836683 -h int:value:$volume "                                  " "                          $volume%"
+	else
+		dunstify -r 836683 -u critical -h int:value:$volume "                                  " "                          $volume%"
+	fi
+}
+
 appmenu()
 {
 	rofi -show drun -show-icons
@@ -22,16 +48,16 @@ brightinc()
 	brightness=$(cat ~/.brightness)
 
 	case "$brightness" in
-		1) xrandr --output $oled --brightness .1 ;;
-		2) xrandr --output $oled --brightness .2 ;;
-		3) xrandr --output $oled --brightness .3 ;;
-		4) xrandr --output $oled --brightness .4 ;;
-		5) xrandr --output $oled --brightness .5 ;;
-		6) xrandr --output $oled --brightness .6 ;;
-		7) xrandr --output $oled --brightness .7 ;;
-		8) xrandr --output $oled --brightness .8 ;;
-		9) xrandr --output $oled --brightness .9 ;;
-		10) xrandr --output $oled --brightness 1 ;;
+		1) xrandr --output $oled --brightness .1 & dunstify -r 836683 -h int:value:10 "                                  " " 10" ;;
+		2) xrandr --output $oled --brightness .2 & dunstify -r 836683 -h int:value:20 "                                  " "    20" ;;
+		3) xrandr --output $oled --brightness .3 & dunstify -r 836683 -h int:value:30 "                                  " "        30" ;;
+		4) xrandr --output $oled --brightness .4 & dunstify -r 836683 -h int:value:40 "                                  " "           40" ;;
+		5) xrandr --output $oled --brightness .5 & dunstify -r 836683 -h int:value:50 "                                  " "              50" ;;
+		6) xrandr --output $oled --brightness .6 & dunstify -r 836683 -h int:value:60 "                                  " "                 60" ;;
+		7) xrandr --output $oled --brightness .7 & dunstify -r 836683 -h int:value:70 "                                  " "                    70" ;;
+		8) xrandr --output $oled --brightness .8 & dunstify -r 836683 -h int:value:80 "                                  " "                       80" ;;
+		9) xrandr --output $oled --brightness .9 & dunstify -r 836683 -h int:value:90 "                                  " "                          90" ;;
+		10) xrandr --output $oled --brightness 1 & dunstify -r 836683 -h int:value:100 "                                  " "                            100" ;;
 	esac
 }
 
@@ -45,16 +71,16 @@ brightdec()
 	brightness=$(cat ~/.brightness)
 
 	case "$brightness" in
-		1) xrandr --output $oled --brightness .1 ;;
-		2) xrandr --output $oled --brightness .2 ;;
-		3) xrandr --output $oled --brightness .3 ;;
-		4) xrandr --output $oled --brightness .4 ;;
-		5) xrandr --output $oled --brightness .5 ;;
-		6) xrandr --output $oled --brightness .6 ;;
-		7) xrandr --output $oled --brightness .7 ;;
-		8) xrandr --output $oled --brightness .8 ;;
-		9) xrandr --output $oled --brightness .9 ;;
-		10) xrandr --output $oled --brightness 1 ;;
+		1) xrandr --output $oled --brightness .1 & dunstify -r 836683 -h int:value:10 "                                  " " 10" ;;
+		2) xrandr --output $oled --brightness .2 & dunstify -r 836683 -h int:value:20 "                                  " "    20" ;;
+		3) xrandr --output $oled --brightness .3 & dunstify -r 836683 -h int:value:30 "                                  " "        30" ;;
+		4) xrandr --output $oled --brightness .4 & dunstify -r 836683 -h int:value:40 "                                  " "           40" ;;
+		5) xrandr --output $oled --brightness .5 & dunstify -r 836683 -h int:value:50 "                                  " "              50" ;;
+		6) xrandr --output $oled --brightness .6 & dunstify -r 836683 -h int:value:60 "                                  " "                 60" ;;
+		7) xrandr --output $oled --brightness .7 & dunstify -r 836683 -h int:value:70 "                                  " "                    70" ;;
+		8) xrandr --output $oled --brightness .8 & dunstify -r 836683 -h int:value:80 "                                  " "                       80" ;;
+		9) xrandr --output $oled --brightness .9 & dunstify -r 836683 -h int:value:90 "                                  " "                          90" ;;
+		10) xrandr --output $oled --brightness 1 & dunstify -r 836683 -h int:value:100 "                                  " "                            100" ;;
 	esac
 }
 
@@ -132,4 +158,8 @@ case "$1" in
 	btoffscreen) btoffscreen ;;
 	btonscreen) btonscreen ;;
 	appmenu) appmenu ;;
+	volumenotify) volumenotify ;;
+	upvol) upvol ;;
+	downvol) downvol ;;
+	mutevol) mutevol ;;
 esac
