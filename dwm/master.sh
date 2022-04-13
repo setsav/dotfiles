@@ -2,22 +2,22 @@
 
 mutevol()
 {
-	/usr/bin/pactl set-sink-mute 0 toggle && volumenotify
+	/usr/bin/pactl set-sink-mute $activevolsink toggle && volumenotify
 }
 
 downvol()
 {
-	/usr/bin/pactl set-sink-volume 0 -5% && volumenotify
+	/usr/bin/pactl set-sink-volume $activevolsink -5% && volumenotify
 }
 
 upvol()
 {
-	/usr/bin/pactl set-sink-volume 0 +5% && volumenotify
+	/usr/bin/pactl set-sink-volume $activevolsink +5% && volumenotify
 }
 
 volumenotify()
 {
-	volume=$(pactl list sinks | perl -000ne 'if(/Sink #0/){/\/  *(\d\d*)/; print "$1\n"}')
+	volume=$(pactl list sinks | perl -000ne 'if(/RUNNING/){/\/  *(\d\d*)/; print "$1\n"}')
 
 	if [[ "$volume" -lt 101 ]] ; then
 		dunstify -r 836683 -h int:value:$volume "                                  " "                          $volume%"
@@ -35,7 +35,7 @@ vinote()
 {
 	date=$(date +%a_%b_%d_%I_%M_%N)
 	name=$(echo -n "$date.txt")
-	st -e nvim ~/Documents/Notes/$name -c :E
+	alacritty -e nvim ~/Documents/Notes/$name -c :E
 }
 
 brightinc()
@@ -89,25 +89,25 @@ btmenu()
 	bluetooth=$(echo -e "\n\n\n" | rofi -no-click-to-exit -theme btmenu.rasi -hover-select -dmenu -i -p " ")
 
 	case "$bluetooth" in
-		) st -t termfloat -e sh .dwm/master.sh btonscreen ;;
-		) st -t termfloat -e sh .dwm/master.sh btoffscreen ;;
-		) st -t termfloat -e bluetoothctl ;;
-		) st -t termfloat -e iwctl ;;
+		) alacritty -t termfloat -e sh .dwm/master.sh btonscreen ;;
+		) alacritty -t termfloat -e sh .dwm/master.sh btoffscreen ;;
+		) alacritty -t termfloat -e bluetoothctl ;;
+		) alacritty -t termfloat -e iwctl ;;
 	esac
 }
 
 nvidiascreen()
 {
-	echo "Switching to hybrid graphics..."
 	fortune | cowsay
-	sleep 60s
+	echo -e " \n\n"
+	system76-power graphics nvidia && reboot
 }
 
 intelscreen()
 {
-	echo "Switching to Intel graphics..."
 	fortune | cowsay
-	sleep 60s
+	echo -e " \n\n"
+	system76-power graphics integrated && reboot
 }
 
 btoffscreen()
@@ -135,8 +135,8 @@ powermenu()
 		) shutdown 0 ;;
 		) systemctl hibernate ;;
 		) reboot ;;
-		) st -t termfloat -e .dwm/master.sh nvidiascreen & system76-power graphics hybrid && reboot  ;;
-		) st -t termfloat -e .dwm/master.sh intelscreen & system76-power graphics integrated && reboot ;;
+		) alacritty -t termfloat -e .dwm/master.sh nvidiascreen ;;
+		) alacritty -t termfloat -e .dwm/master.sh intelscreen ;;
 		) kill $dwm ;;
 	esac
 }
@@ -146,6 +146,8 @@ oled=$(xrandr --listactivemonitors | grep -o -P "  eDP-.{0,5}")
 brightness=$(cat ~/.brightness)
 
 dwm=$(pidof dwm)
+
+activevolsink=$(pactl list sinks | perl -000ne 'if(/RUNNING/){/Sink #(\d*)/; print "$1\n"}')
 
 case "$1" in
 	nvidiascreen) nvidiascreen ;;

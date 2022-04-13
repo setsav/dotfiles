@@ -58,4 +58,8 @@ xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 xrdb /home/exaset/.Xresources
 
+eval $(gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK
+
 exec dwm 
+#exec xfce4-session
