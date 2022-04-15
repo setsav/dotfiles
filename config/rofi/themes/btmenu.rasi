@@ -7,7 +7,7 @@
     purple:                      rgba ( 108, 113, 196, 100 % );
     normal-foreground:           var(foreground);
     darkyellow:                  rgba ( 181, 137, 0, 100 % );
-    background:                  rgba ( 0, 43, 54, 100 % );
+    background:                  #000000;
     alternate-normal-foreground: var(foreground);
     urgent-foreground:           var(red);
     active-background:           var(background);
@@ -30,7 +30,7 @@
     background-color:            transparent;
     normal-background:           var(background);
     border-color:                var(foreground);
-    foreground:                  rgba ( 147, 161, 161, 100 % );
+    foreground:                  #808080;
     darkpurple:                  rgba ( 108, 113, 196, 100 % );
     cyan:                        rgba ( 42, 161, 152, 100 % );
     alternate-normal-background: var(lightbg);

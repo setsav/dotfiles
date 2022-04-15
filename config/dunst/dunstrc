@@ -1,7 +1,7 @@
 # See dunst(5) for all configuration options
 
 [global]
-    highlight = "#268BD2"
+    highlight = "#00ffff"
     ### Display ###
 
     # Which monitor should the notifications be displayed on.
@@ -90,7 +90,7 @@
     frame_width = 1
 
     # Defines color of the frame around the notification window.
-    frame_color = "#93a1a1"
+    frame_color = "#808080"
 
     # Define a color for the separator.
     # possible values are:
@@ -293,25 +293,25 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#002b36"
-    foreground = "#93a1a1"
+    background = "#000000"
+    foreground = "#808080"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#002b36"
-    foreground = "#93a1a1"
+    background = "#000000"
+    foreground = "#808080"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_critical]
-    background = "#002b36"
-    foreground = "#93a1a1"
-    frame_color = "#93a1a1"
+    background = "#000000"
+    foreground = "#808080"
+    frame_color = "#808080"
     timeout = 10
-    highlight = "#B58900"
+    highlight = "#feff00"
     # Icon for notifications with critical urgency, uncomment to enable
     #default_icon = /path/to/icon
 

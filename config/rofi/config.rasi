@@ -6,21 +6,21 @@ configuration {
 }
 
 * {
-    red:                            #DC322F;
-    darkred:                        #DC322F;
-    green  :                        #859900;
-    darkgreen:                      #859900;
-    yellow:                         #B58900;
-    darkyellow:                     #B58900;
-    blue:                           #268BD2;
-    darkblue:                       #268BD2;
-    purple:                         #6C71C4;
-    darkpurple:                     #6C71C4;
-    cyan:                           #2AA198;
-    darkcyan:                       #2AA198;
-    foreground:                     #93A1A1;
-    background:                     #002B36;
-    border:                         #268BD2;
+    red:                            #fe0100;
+    darkred:                        #fe0100;
+    green  :                        #33ff00;
+    darkgreen:                      #33ff00;
+    yellow:                         #33ff00;
+    darkyellow:                     #33ff00;
+    blue:                           #0066ff;
+    darkblue:                       #0066ff;
+    purple:                         #cc00ff;
+    darkpurple:                     #cc00ff;
+    cyan:                           #0AA198;
+    darkcyan:                       #00ffff;
+    foreground:                     #808080;
+    background:                     #000000;
+    border:                         #0066ff;
 }
 window {
     border: 						3px;

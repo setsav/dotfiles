@@ -1,8 +1,11 @@
 #!/bin/sh
 
+sleep 5s
+/usr/share/razercontrol/daemon
+sleep 1s
 gpu()
 {
-	razer-cli write fan 0 && razer-cli write power 4 3 2 && sleep 1s
+	razer-cli write fan 0 && razer-cli write power 1 && sleep 1s
 }
 
 cpu()

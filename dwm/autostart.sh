@@ -41,10 +41,10 @@ kill $pulseaudio && pulseaudio --start
 dunst & mullvad-vpn & feh --bg-fill /home/exaset/.dwm/wallpaper.jpg & bluetoothctl power off
 
 #alacritty -t termfloat -e sh ~/.dwm/razer.sh
-/usr/share/razercontrol/daemon && sh ~/.dwm/razer.sh
+#sh ~/.dwm/razer.sh
 
 if [ "$state" = "nvidia" ]; then
-	sleep 4s && discord
+	sleep 4s && discord & tutanota-desktop
 elif [ "$state" = "hybrid" ]; then
-	sleep 4s && discord
+	sleep 4s && discord & tutanota-desktop
 fi

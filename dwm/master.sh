@@ -100,7 +100,7 @@ nvidiascreen()
 {
 	fortune | cowsay
 	echo -e " \n\n"
-	system76-power graphics nvidia && reboot
+	system76-power graphics hybrid && reboot
 }
 
 intelscreen()
